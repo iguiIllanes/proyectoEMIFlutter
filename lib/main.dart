@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:proyecto/screens/home.dart';
 
+//screens
+
 void main(){
   runApp(
     MyApp
@@ -48,7 +50,9 @@ final MaterialApp MyApp = MaterialApp(
 //      subtitle: TextStyle(color: Color(0xFFFFFFFF),),
 //    ),
     iconTheme: IconThemeData(color: Color(0xFFFFFFFF),opacity: 100.0, size:35.0),
-    accentColor: Color(0xFFFFC107),
+//TODO
+//    accentColor: Color(0xFFFFC107),
+  accentColor: Colors.orangeAccent,
     dividerColor: Color(0xFF757575),
   ),
 
