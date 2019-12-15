@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
+import 'package:proyecto/screens/playstation.dart';
+import 'package:proyecto/screens/xbox.dart';
+import 'package:proyecto/screens/switch.dart';
+//Vender Screens
+import 'package:proyecto/screens/vender/playstation_vender.dart';
+
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -10,9 +17,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedPage =0;
   final _pageOptions = [
-    Text("1"),
-    Text("2"),
-    Text("3"),
+    Playstation(),
+    Xbox(),
+    NSwitch(),
   ];
 
   String titleAB = "Playstation";
@@ -40,7 +47,7 @@ class _HomeState extends State<Home> {
           return Colors.redAccent;
       }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,14 +65,31 @@ class _HomeState extends State<Home> {
         title: Text(titleAB),
       ),
 
-      floatingActionButton: FloatingActionButton (
-        onPressed: (){},
-        shape: RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(15.0)),),
-        child: Icon(Icons.add, color: Theme.of(context).iconTheme.color,),
+    body: _pageOptions[_selectedPage],
 
-      ),
+    floatingActionButton: SpeedDial(
+      elevation: 0.0,
+      backgroundColor: checkColor(_selectedPage),
+      overlayOpacity: 0.8,
+      overlayColor: Theme.of(context).backgroundColor,
+      child: Icon(Icons.add,color: Theme.of(context).iconTheme.color),
+      children: [
+        SpeedDialChild(
+          elevation: 0.0,
+          label: "Vender",
+          backgroundColor: Theme.of(context).backgroundColor,
+          child: Icon(Icons.attach_money,color:Theme.of(context).iconTheme.color),
+        ),
+        SpeedDialChild(
+            elevation: 0.0,
+            label: 'Cambiar',
+            backgroundColor: Theme.of(context).backgroundColor,
+            child: Icon(Icons.repeat, color: Theme.of(context).iconTheme.color,)
+        ),
+      ],
+    ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+//      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPage,
@@ -95,6 +119,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+
     );
   }
 }
